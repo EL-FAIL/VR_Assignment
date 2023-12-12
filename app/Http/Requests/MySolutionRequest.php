@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class MySolutionRequest extends FormRequest
 {
     /**
@@ -25,7 +26,7 @@ class MySolutionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
         ];
     }
 }
