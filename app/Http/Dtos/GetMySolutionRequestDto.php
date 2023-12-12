@@ -21,6 +21,7 @@ class GetMySolutionRequestDto
         }
 
         $this->pushRequestValue($mySolutionRequest);
+        return $this;
     }
 
     public final function setLifestyleTag(array $lifestyleTags): void

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\BMI;
+namespace App\Http\Services\Bmi;
 
 use App\Http\Data\BmiData;
 use App\Http\Dtos\GetMySolutionRequestDto;
@@ -56,6 +56,6 @@ class FindBmiService
 
     protected final function calculateBmi(): int
     {
-        $this->bmi = $this->height/$this->weight;
+        return $this->bmi = $this->height/$this->weight;
     }
 }
