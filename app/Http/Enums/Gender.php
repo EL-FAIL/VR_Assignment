@@ -4,6 +4,6 @@ namespace App\Http\Enums;
 
 enum Gender: string
 {
-    case MAN = "man";
-    case WOMAN = "woman";
+    case MAN = "MAN";
+    case WOMAN = "WOMAN";
 }

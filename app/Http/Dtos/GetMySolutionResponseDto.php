@@ -18,4 +18,11 @@ class GetMySolutionResponseDto
     {
         return $this->recommendSolution->value;
     }
+
+    public function toResponseArray()
+    {
+        return [
+           'recommend_solution' => $this->recommendSolution
+        ];
+    }
 }

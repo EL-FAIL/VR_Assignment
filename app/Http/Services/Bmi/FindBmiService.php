@@ -8,7 +8,7 @@ use App\Http\Enums\Gender;
 
 class FindBmiService
 {
-    private int $bmi;
+    private float $bmi;
     private int $height = BmiData::MAN_AVG_HEIGHT;
     private float $weight = BmiData::MAN_AVG_WEIGHT;
     private Gender $gender = Gender::MAN;

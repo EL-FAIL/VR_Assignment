@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/solution',[\App\Http\Controllers\SolutionController::class,'getMySolution']);
+Route::get('/health',function (){
+   return true;
+});
+Route::post('/solution',[\App\Http\Controllers\SolutionController::class,'getMySolution']);

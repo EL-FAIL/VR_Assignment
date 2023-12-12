@@ -19,7 +19,7 @@ class SolutionController extends Controller
         return response()->json(
           $this->service->getSolution(
               (new GetMySolutionRequestDto($request))
-          )
+          )->toResponseArray()
         );
     }
 }

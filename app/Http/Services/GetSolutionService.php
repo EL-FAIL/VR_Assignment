@@ -19,7 +19,7 @@ class GetSolutionService
     {
         $trainer = $this->binder->bindTrainer($solutionRequestDto);
 
-        $recommendSolution =  $trainer->getRecommendSolution($solutionRequestDto->getLifeStyleTags());
+        $recommendSolution =  $trainer->newInstance()->getRecommendSolution($solutionRequestDto->getLifeStyleTags());
 
         $response = new GetMySolutionResponseDto();
         $response->setRecommendSolution($recommendSolution);

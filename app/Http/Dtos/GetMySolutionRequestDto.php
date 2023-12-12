@@ -80,7 +80,7 @@ class GetMySolutionRequestDto
         $this->lifestyleTags = $mySolutionRequest->lifestyle_tag;
 
         if($mySolutionRequest->exists('solution_type')){
-            $this->solutionType = $mySolutionRequest->solution_type;
+            $this->solutionType = SolutionType::{$mySolutionRequest->solution_type};
         }
 
         if($mySolutionRequest->exists('height')){
@@ -92,7 +92,7 @@ class GetMySolutionRequestDto
         }
 
         if($mySolutionRequest->exists('gender')){
-            $this->gender = $mySolutionRequest->gender;
+            $this->gender = Gender::{$mySolutionRequest->gender};
         }
     }
 }
