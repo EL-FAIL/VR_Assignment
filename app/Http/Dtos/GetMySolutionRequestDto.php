@@ -3,13 +3,12 @@
 namespace App\Http\Dtos;
 
 use App\Http\Enums\Gender;
-use App\Http\Enums\LifestyleTag;
 use App\Http\Enums\SolutionType;
 use App\Http\Requests\MySolutionRequest;
 
 class GetMySolutionRequestDto
 {
-    private LifestyleTag $lifestyleTag;
+    private array $lifestyleTags;
     private SolutionType $solutionType;
     private int $height;
     private int $weight;
@@ -24,9 +23,9 @@ class GetMySolutionRequestDto
         $this->pushRequestValue($mySolutionRequest);
     }
 
-    public final function setLifestyleTag(LifestyleTag $lifestyleTag): void
+    public final function setLifestyleTag(array $lifestyleTags): void
     {
-        $this->lifestyleTag = $lifestyleTag;
+        $this->lifestyleTags = $lifestyleTags;
     }
 
     public final function setSolutionType(SolutionType $solutionType): void
@@ -49,9 +48,9 @@ class GetMySolutionRequestDto
         $this->gender = $gender;
     }
 
-    public final function getLifeStyleTag(): LifestyleTag
+    public final function getLifeStyleTags(): array
     {
-        return $this->lifestyleTag;
+        return $this->lifestyleTags;
     }
 
     public final function getSolutionType(): SolutionType
