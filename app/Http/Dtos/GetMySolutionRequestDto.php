@@ -10,10 +10,10 @@ use App\Http\Requests\MySolutionRequest;
 class GetMySolutionRequestDto
 {
     private LifestyleTag $lifestyleTag;
-    private SolutionType|null $solutionType;
-    private int|null $height;
-    private int|null $weight;
-    private Gender|null $gender;
+    private SolutionType $solutionType;
+    private int $height;
+    private int $weight;
+    private Gender $gender;
 
     public function __construct(MySolutionRequest $mySolutionRequest = null)
     {
@@ -21,11 +21,7 @@ class GetMySolutionRequestDto
             return $this;
         }
 
-        $this->lifestyleTag = $mySolutionRequest->lifestyleTag;
-        $this->solutionType = $mySolutionRequest->solutionType ?? null;
-        $this->height = $mySolutionRequest->height ?? null;
-        $this->weight = $mySolutionRequest->weight ?? null;
-        $this->gender = $mySolutionRequest->gender ?? null;
+        $this->pushRequestValue($mySolutionRequest);
     }
 
     public final function setLifestyleTag(LifestyleTag $lifestyleTag): void
@@ -53,12 +49,12 @@ class GetMySolutionRequestDto
         $this->gender = $gender;
     }
 
-    public final function getLifeStyleTag(): string
+    public final function getLifeStyleTag(): LifestyleTag
     {
         return $this->lifestyleTag;
     }
 
-    public final function getSolutionType(): string
+    public final function getSolutionType(): SolutionType
     {
         return $this->solutionType;
     }
@@ -73,8 +69,30 @@ class GetMySolutionRequestDto
         return $this->weight;
     }
 
-    public final function getGender(): string
+    public final function getGender(): Gender
     {
         return $this->gender;
+    }
+
+    protected final function pushRequestValue(MySolutionRequest $mySolutionRequest): void
+    {
+        //필수값
+        $this->lifestyleTag = $mySolutionRequest->lifestyle_tag;
+
+        if($mySolutionRequest->exists('solution_type')){
+            $this->solutionType = $mySolutionRequest->solution_type;
+        }
+
+        if($mySolutionRequest->exists('height')){
+            $this->height = $mySolutionRequest->height;
+        }
+
+        if($mySolutionRequest->exists('weight')){
+            $this->weight = $mySolutionRequest->weight;
+        }
+
+        if($mySolutionRequest->exists('gender')){
+            $this->gender = $mySolutionRequest->gender;
+        }
     }
 }
