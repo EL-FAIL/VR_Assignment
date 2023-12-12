@@ -9,10 +9,10 @@ use App\Http\Requests\MySolutionRequest;
 class GetMySolutionRequestDto
 {
     private array $lifestyleTags;
-    private SolutionType $solutionType;
-    private int $height;
-    private int $weight;
-    private Gender $gender;
+    private ?SolutionType $solutionType = null;
+    private ?int $height = null;
+    private ?int $weight = null;
+    private ?Gender $gender = null;
 
     public function __construct(MySolutionRequest $mySolutionRequest = null)
     {
@@ -54,22 +54,22 @@ class GetMySolutionRequestDto
         return $this->lifestyleTags;
     }
 
-    public final function getSolutionType(): SolutionType
+    public final function getSolutionType(): SolutionType|null
     {
         return $this->solutionType;
     }
 
-    public final function getHeight(): int
+    public final function getHeight(): int|null
     {
         return $this->height;
     }
 
-    public final function getWeight(): int
+    public final function getWeight(): int|null
     {
         return $this->weight;
     }
 
-    public final function getGender(): Gender
+    public final function getGender(): Gender|null
     {
         return $this->gender;
     }
@@ -77,7 +77,7 @@ class GetMySolutionRequestDto
     protected final function pushRequestValue(MySolutionRequest $mySolutionRequest): void
     {
         //필수값
-        $this->lifestyleTag = $mySolutionRequest->lifestyle_tag;
+        $this->lifestyleTags = $mySolutionRequest->lifestyle_tag;
 
         if($mySolutionRequest->exists('solution_type')){
             $this->solutionType = $mySolutionRequest->solution_type;

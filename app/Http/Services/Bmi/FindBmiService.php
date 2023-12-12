@@ -10,7 +10,7 @@ class FindBmiService
 {
     private int $bmi;
     private int $height = BmiData::MAN_AVG_HEIGHT;
-    private int $weight = BmiData::MAN_AVG_WEIGHT;
+    private float $weight = BmiData::MAN_AVG_WEIGHT;
     private Gender $gender = Gender::MAN;
 
     public final function findBmi(GetMySolutionRequestDto $solutionRequestDto): FindBmiService
@@ -47,7 +47,7 @@ class FindBmiService
 
     protected final function initializeGenderType(GetMySolutionRequestDto $solutionRequestDto): void
     {
-        if($solutionRequestDto->getGender() !== null && $solutionRequestDto->getGender() === Gender::WOMAN){
+        if(!$solutionRequestDto->getGender() !== null && $solutionRequestDto->getGender() === Gender::WOMAN){
             $this->gender = Gender::WOMAN;
             $this->height = BmiData::WOMAN_AVG_HEIGHT;
             $this->weight = BmiData::WOMAN_AVG_WEIGHT;
@@ -56,6 +56,7 @@ class FindBmiService
 
     protected final function calculateBmi(): int
     {
-        return $this->bmi = $this->height / $this->weight;
+        $bmiHeight = $this->height / 100;
+        return $this->bmi = $this->weight / ($bmiHeight^2);
     }
 }

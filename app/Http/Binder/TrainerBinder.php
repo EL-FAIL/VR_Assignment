@@ -42,12 +42,12 @@ class TrainerBinder
 
     private function findSolutionTypeForBmi(GetMySolutionRequestDto $solutionRequestDto): SolutionType
     {
-        $overBmi = $this->bmiService->findBmi($solutionRequestDto)->isNormalBmi();
+        $normalBmi = $this->bmiService->findBmi($solutionRequestDto)->isNormalBmi();
 
-        if($overBmi){
-            return SolutionType::DIET;
+        if($normalBmi){
+            return SolutionType::FITNESS;
         }
 
-        return SolutionType::FITNESS;
+        return SolutionType::DIET;
     }
 }
