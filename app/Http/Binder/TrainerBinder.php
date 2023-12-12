@@ -7,7 +7,7 @@ use App\Http\Enums\SolutionType;
 use App\Http\Services\BMI\FindBmiService;
 use App\Http\Services\Trainer\DietExpertService;
 use App\Http\Services\Trainer\FitnessCoachClass;
-use Mockery\Exception;
+use ReflectionClass;
 
 class TrainerBinder
 {
@@ -18,9 +18,9 @@ class TrainerBinder
         $this->bmiService = new FindBmiService();
     }
 
-    const DIET_EXPERT_CLASS = DietExpertService::class;
-    const FITNESS_COATCH_CLASS = FitnessCoachClass::class;
-    public final function bindTrainer(GetMySolutionRequestDto $solutionRequestDto): \ReflectionClass
+    const string DIET_EXPERT_CLASS = DietExpertService::class;
+    const string FITNESS_COACH_CLASS = FitnessCoachClass::class;
+    public final function bindTrainer(GetMySolutionRequestDto $solutionRequestDto): ReflectionClass
     {
         if($solutionRequestDto->getSolutionType() !== null)
         {
@@ -32,16 +32,15 @@ class TrainerBinder
         );
     }
 
-    protected final function bindTrainerForSolutionType(SolutionType $solutionType) : \ReflectionClass
+    private function bindTrainerForSolutionType(SolutionType $solutionType) : ReflectionClass
     {
-        switch ($solutionType){
-            case SolutionType::DIET : return new \ReflectionClass(self::DIET_EXPERT_CLASS);
-            case SolutionType::FITNESS : return new \ReflectionClass(self::FITNESS_COATCH_CLASS);
-            default : throw new Exception('잘못된 검색 타입');
-        }
+        return match ($solutionType) {
+            SolutionType::DIET => new ReflectionClass(self::DIET_EXPERT_CLASS),
+            SolutionType::FITNESS => new ReflectionClass(self::FITNESS_COACH_CLASS),
+        };
     }
 
-    protected final function findSolutionTypeForBmi(GetMySolutionRequestDto $solutionRequestDto): SolutionType
+    private function findSolutionTypeForBmi(GetMySolutionRequestDto $solutionRequestDto): SolutionType
     {
         $overBmi = $this->bmiService->findBmi($solutionRequestDto)->isNormalBmi();
 
