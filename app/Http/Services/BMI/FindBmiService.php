@@ -31,7 +31,7 @@ class FindBmiService
             $this->weight = $solutionRequestDto->getWeight();
         }
 
-        $this->bmi = $this->calculateBmi($solutionRequestDto);
+        $this->bmi = $this->calculateBmi();
 
         return $this;
     }

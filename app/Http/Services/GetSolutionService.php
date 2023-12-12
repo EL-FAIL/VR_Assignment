@@ -15,9 +15,9 @@ class GetSolutionService
         $this->binder = new TrainerBinder();
     }
 
-    public function getSolution(GetMySolutionRequestDto $solutionRequestDto) : GetMySolutionResponseDto
+    public final function getSolution(GetMySolutionRequestDto $solutionRequestDto) : GetMySolutionResponseDto
     {
-        $trainer = $this->binder->bindTrainer();
+        $trainer = $this->binder->bindTrainer($solutionRequestDto);
 
         $trainer->getRecommandSolution($solutionRequestDto->getLifeStyleTags());
     }

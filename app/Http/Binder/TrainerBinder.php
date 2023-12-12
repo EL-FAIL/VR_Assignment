@@ -7,6 +7,7 @@ use App\Http\Enums\SolutionType;
 use App\Http\Services\BMI\FindBmiService;
 use App\Http\Services\Trainer\DietExpertService;
 use App\Http\Services\Trainer\FitnessCoachClass;
+use Mockery\Exception;
 
 class TrainerBinder
 {
@@ -36,6 +37,7 @@ class TrainerBinder
         switch ($solutionType){
             case SolutionType::DIET : return new \ReflectionClass(self::DIET_EXPERT_CLASS);
             case SolutionType::FITNESS : return new \ReflectionClass(self::FITNESS_COATCH_CLASS);
+            default : throw new Exception('잘못된 검색 타입');
         }
     }
 
