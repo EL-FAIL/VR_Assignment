@@ -7,7 +7,7 @@ use App\Http\Enums\RecommendSolution;
 class DietExpertCourceData
 {
     const array DIET_EXPERT_COURSE = [
-        "Intermittent Fasting" => [
+        "IntermittentFasting" => [
             "enough_time",
             "strong_will"
         ],

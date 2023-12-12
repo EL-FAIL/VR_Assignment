@@ -56,6 +56,6 @@ class FindBmiService
 
     protected final function calculateBmi(): int
     {
-        return $this->bmi = $this->height/$this->weight;
+        return $this->bmi = $this->height / $this->weight;
     }
 }

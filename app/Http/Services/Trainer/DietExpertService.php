@@ -2,13 +2,24 @@
 
 namespace App\Http\Services\Trainer;
 
+use App\Http\Data\DietExpertCourceData;
 use App\Http\Enums\RecommendSolution;
+use App\Http\Services\ArraySearch\ArraySearchService;
 
 class DietExpertService implements TrainerInterface
 {
+    private array $courseData;
 
-    #[\Override] public final function getRecommandSolution(): RecommendSolution
+    public function __construct()
     {
-        // TODO: Implement getRecommandSolution() method.
+        $this->courseData = DietExpertCourceData::getCourse();
+    }
+
+    #[\Override] public final function getRecommendSolution(array $lifestyleTags): RecommendSolution
+    {
+        return match (ArraySearchService::searchForCountValue($lifestyleTags, $this->courseData)) {
+            "IntermittentFasting" => RecommendSolution::INTERMITTENT_FASTING,
+            "LCHF" => RecommendSolution::LCHF,
+        };
     }
 }

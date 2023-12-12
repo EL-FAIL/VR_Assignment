@@ -2,13 +2,26 @@
 
 namespace App\Http\Services\Trainer;
 
+use App\Http\Data\FitnessCoachData;
 use App\Http\Enums\RecommendSolution;
+use App\Http\Services\ArraySearch\ArraySearchService;
 
 class FitnessCoachClass implements TrainerInterface
 {
+    private array $courseData;
 
-    #[\Override] public final function getRecommandSolution(): RecommendSolution
+    public function __construct()
     {
-        // TODO: Implement getRecommandSolution() method.
+        $this->courseData = FitnessCoachData::getCourse();
+    }
+
+    #[\Override] public final function getRecommendSolution(array $lifestyleTags): RecommendSolution
+    {
+        return match (ArraySearchService::searchForCountValue($lifestyleTags, $this->courseData)) {
+            "Crossfit" => RecommendSolution::CROSSFIT,
+            "CardioExercise" => RecommendSolution::CARDIO_EXERSIZE,
+            "Strength" => RecommendSolution::STRENGTH,
+            "Spinning" => RecommendSolution::SPINNING,
+        };
     }
 }

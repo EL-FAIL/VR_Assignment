@@ -9,7 +9,7 @@ class FitnessCoachData
             "enough_money",
             "strong_will"
         ],
-        "Cardio Exercise" => [
+        "CardioExercise" => [
             "strong_will"
         ],
         "Strength" => [

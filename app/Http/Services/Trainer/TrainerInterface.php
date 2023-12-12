@@ -6,5 +6,5 @@ use App\Http\Enums\RecommendSolution;
 
 interface TrainerInterface
 {
-    public  function getRecommandSolution(): RecommendSolution;
+    public  function getRecommendSolution(array $lifestyleTags): RecommendSolution;
 }
